@@ -86,13 +86,14 @@ shinyUI(fluidPage(
                              )
                          )
                          ),
-                tabPanel("tab2",
+                tabPanel("Cargar Archivo",
                          sidebarLayout(
                            sidebarPanel(
                              h2("Subir Archivo al app"),
                              fileInput("upload_file","Seleccionar")
                                         ),
-                           mainPanel("main"
+                           mainPanel(
+                             DT::dataTableOutput("file_content_show")
                                      )
                          )
                          
