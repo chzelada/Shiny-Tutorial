@@ -1,6 +1,7 @@
 
 library(shiny)
 library(ggplot2)
+library(dplyr)
 
 shinyServer(function(input, output) {
 
@@ -70,12 +71,11 @@ output$all_click_options <- renderPrint({
     if(!is.null(input$brush$xmin)){
         brushx <- paste0(c('(',round(input$brush$xmin,2),',',round(input$brush$xmax,2),')'),collapse = '')
         brushy <- paste0(c('(',round(input$brush$ymin,2),',',round(input$brush$ymax,2),')'),collapse = '')
-        brush <- paste0('rango en x: ', brushx,'rango en y: ', brushy)
+        brush <- cat('\t rango en x: ', brushx,'\n','\t rango en y: ', brushy)
         
     } else {brush<-NULL}
  
-    print(   
- paste0(click,dblclick,hover,brush,collapse = "\n"))
+cat( click,dblclick,hover,brush,sep = "\n" )
     
     
     
