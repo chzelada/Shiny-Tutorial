@@ -25,6 +25,26 @@ tabsetPanel(
     tabPanel('Ejemplo 5',
              numericInput("temp_c", 'Celsius', value = NA , step=1),
              numericInput("temp_f", 'Farenheit', value = NA , step=1)
+             ),
+    tabPanel('Ejemplo 6',
+             selectInput('dist',"Distribucion",
+                         choices = c('normal','uniform','exponential')),
+             
+             numericInput('nrandom','Numero de muestras',100),
+             tabsetPanel(id="params",
+                         type = 'hidden',
+                         tabPanel('normal',
+                                  numericInput('mean','Media', value=0),
+                                  numericInput('sd','Desviacion',value=1)
+                                  ),
+                         tabPanel('uniform',
+                                  numericInput('min',"minimo",0),
+                                  numericInput('max','maximo',1)
+                                  ),
+                         tabPanel('exponential',
+                                  numericInput('rate','razon',value=1,min=0))
+                         ),
+             plotOutput('plot_dist')
              )
 )
 ))

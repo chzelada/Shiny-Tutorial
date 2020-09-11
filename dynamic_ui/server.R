@@ -38,4 +38,24 @@ shinyServer(function(input, output, session) {
         updateNumericInput(session, 'temp_c',value=c)
     })
     
+    observeEvent(input$dist,{
+        updateTabsetPanel(session, 'params', selected=input$dist)
+        
+    })
+    
+sample  <-    reactive({
+    switch (input$dist,
+        normal = rnorm(input$nrandom, input$mean, input$sd),
+        uniform = runif(input$nrandom, input$min,input$max),
+        exponential = rexp(input$n, input$rate)
+    )
+})
+
+output$plot_dist <- renderPlot({
+    hist(sample())
+})
+
+
+    
+    
 })
